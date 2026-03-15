@@ -1,0 +1,29 @@
+{
+  "name": "api-game-of-thrones",
+  "version": "1.0.0",
+  "description": "Um site com uma API de game of thrones",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anacardozo/API-Game-Of-Thrones.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/anacardozo/API-Game-Of-Thrones/issues"
+  },
+  "homepage": "https://github.com/anacardozo/API-Game-Of-Thrones#readme",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.3.0",
+    "nodemon": "^3.1.14"
+  }
+}
