@@ -21,6 +21,7 @@ class dragaoService {
                 inspiredName,
                 caracteristics
             })
+            await newDragao.save()
         } catch (error) {
             console.log(error)
         }
@@ -52,3 +53,5 @@ class dragaoService {
         }
     }
 }
+
+export default new dragaoService()
