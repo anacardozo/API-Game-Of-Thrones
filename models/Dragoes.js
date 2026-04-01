@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const caracteristicSchema = new mongoose.Schema({
     size: String,
@@ -12,7 +12,7 @@ const dragaoSchema = new mongoose.Schema({
     description: String,
     assembler: String,
     inspiredName: String,
-    caracteristics: [caracteristicSchema]
+    caracteristics: caracteristicSchema
 })
 
 const Dragao = mongoose.model('Dragao', dragaoSchema)
