@@ -1,0 +1,138 @@
+paths:
+  /dragoes:
+    get:
+      summary: Retorna a lista de todos os dragões cadastrados
+      tags: [Dragoes]
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: Lista de Dragões
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dragoes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Dragao'
+        500:
+          description: Erro interno do servidor
+
+    post:
+      summary: Cadastra um novo dragão
+      tags: [Dragoes]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DragaoInput'
+      responses:
+        201:
+          description: O dragão foi cadastrado com sucesso
+        500:
+          description: Erro interno do servidor
+
+  /dragoes/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        description: ID única do dragão (MongoDB ObjectId)
+
+    put:
+      summary: Altera um dragão existente
+      tags: [Dragoes]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DragaoInput'
+      responses:
+        200:
+          description: Dragão atualizado com sucesso
+        400:
+          description: Erro na validação da ID
+        500:
+          description: Erro interno do servidor
+
+    delete:
+      summary: Exclui um dragão do catálogo
+      tags: [Dragoes]
+      security:
+        - bearerAuth: []
+      responses:
+        204:
+          description: O dragão foi excluído com sucesso
+        400:
+          description: Erro na validação da ID
+        500:
+          description: Erro interno do servidor
+
+components:
+  schemas:
+    Caracteristics:
+      type: object
+      properties:
+        size:
+          type: string
+          example: "Grande"
+        color:
+          type: string
+          example: "Verde e Bronze"
+        temperament:
+          type: string
+          example: "Leal"
+        specialAbility:
+          type: string
+          example: "Ataques aéreos rápidos"
+
+    Dragao:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "69cd6a46b4e74e92a7eca9fd"
+        name:
+          type: string
+          example: "Rhaegal"
+        description:
+          type: string
+          example: "Dragão ágil e bom em combate aéreo."
+        assembler:
+          type: string
+          example: "Jon Snow"
+        inspiredName:
+          type: string
+          example: "Rhaegar Targaryen"
+        caracteristics:
+          $ref: '#/components/schemas/Caracteristics'
+
+    DragaoInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: "Drogon"
+        description:
+          type: string
+          example: "O maior e mais agressivo dos três."
+        assembler:
+          type: string
+          example: "Daenerys Targaryen"
+        inspiredName:
+          type: string
+          example: "Drogo"
+        caracteristics:
+          $ref: '#/components/schemas/Caracteristics'
