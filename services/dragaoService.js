@@ -1,6 +1,17 @@
 import Dragao from "../models/Dragoes.js"
 
 class dragaoService {
+
+    //Método para listar um dragão
+    async getOne(id){
+        try{
+            const dragao = await Dragao.findOne({_id: id})
+            return dragao
+        } catch(error){
+            console.log(error)
+        }
+    }
+
     //Método para listar todos os dragões
     async getAll() {
         try {

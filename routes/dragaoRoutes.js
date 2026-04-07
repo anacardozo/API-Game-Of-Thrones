@@ -4,6 +4,8 @@ import Auth from '../middleware/Auth.js';
 
 const dragaoRoutes = express.Router()
 
+dragaoRoutes.get("/dragoes/:id", Auth.Authorization, dragaoControllers.getOneDragao)
+
 dragaoRoutes.get("/dragoes", Auth.Authorization, dragaoControllers.getAllDragoes)
 
 dragaoRoutes.post("/dragoes", Auth.Authorization, dragaoControllers.createDragao)

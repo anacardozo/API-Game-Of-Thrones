@@ -1,6 +1,26 @@
 import dragaoService from "../services/dragaoService.js";
 import {ObjectId} from "mongodb";
 
+// função para tratar a requisição de listar um dragão
+const getOneDragao = async (req, res) => {
+    try{
+        const id = req.params.id
+        if(ObjectId.isValid(id)){
+            const dragao = await dragaoService.getOne(id)
+            if (!dragao){ 
+                res.status(404).jsom({ error: 'O dragão buscado não foi encontrado.' })
+            } else { 
+                res.status(200).json({ dragao })
+            }
+        } else {
+            res.status(400).json({ error: 'A ID informada é inválida.' })
+        }
+    } catch(error){
+        console.log(error)
+        res.status(500).json({ error: 'Erro interno do servidor.' })
+    }
+}
+
 //Função para tratar a requisição de listar os dragões
 const getAllDragoes = async (req,res) => {
     try {
@@ -58,4 +78,4 @@ const updateDragao = async (req,res) => {
 }
 
 
-export default { getAllDragoes, createDragao, deleteDragao, updateDragao}
+export default { getOneDragao, getAllDragoes, createDragao, deleteDragao, updateDragao}
