@@ -106,6 +106,47 @@ paths:
           description: Erro na validação da ID
         500:
           description: Erro interno do servidor
+  /users:
+    post:
+      summary: Cadastra um novo usuário
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsersInput'
+      responses:
+        201:
+          description: Usuário cadastrado com sucesso
+        500:
+          description: Erro interno do servidor
+
+  /login:
+    post:
+      summary: Realiza o login do usuário
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsersInput'
+        200:
+          description: Login realizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  token:
+                    type: string
+        401:
+          description: Credenciais inválidas
+        404:
+          description: Usuário não encontrado
 
 components:
   schemas:
@@ -145,6 +186,7 @@ components:
           example: "Rhaegar Targaryen"
         caracteristics:
           $ref: '#/components/schemas/Caracteristics'
+      
 
     DragaoInput:
       type: object
@@ -165,3 +207,25 @@ components:
           example: "Drogo"
         caracteristics:
           $ref: '#/components/schemas/Caracteristics'
+
+    UsersInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: "Geovanna"
+        email:
+          type: string
+          example: "geovanna@gmail.com"
+        senha:
+          type: string
+          example: "$3b@43$Kq8xkFWwaQR7spzS45VKCuQTTiK99sb15NuAJV3UJ"
+
+    securitySchemes:
+    bearerAuth:            # Este nome deve ser igual ao que você usou nos paths
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
