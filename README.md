@@ -1,4 +1,4 @@
-# 🐉 Dragon API
+# 🐉 IGNIS
 
 API desenvolvida para gerenciamento de dragões inspirados no universo de Game of Thrones.
 O projeto permite cadastrar, visualizar, editar e remover dragões, além de contar com autenticação de usuários.
@@ -96,4 +96,7 @@ O projeto utiliza o MongoDB Atlas para armazenamento em nuvem.
 
 ## 👩‍💻 Autora
 
-Desenvolvido por Ana Flávia Ribeiro
+Desenvolvido por 
+- Ana Flávia Cardozo
+- Geovanna
+- Raissa
